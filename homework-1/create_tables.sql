@@ -5,7 +5,7 @@ CREATE TABLE customers
     customer_id int PRIMARY KEY,
     company_name varchar(100) NOT NULL,
     contact_name varchar(100) NOT NULL
-);
+)
 
 #INSERT INTO customers VALUES ();
 # добавление данных
@@ -29,7 +29,7 @@ CREATE TABLE orders
 (
     order_id int PRIMARY KEY,
     customer_id int REFERENCES customers (customer_id) NOT NULL,
-    employee_id int REFERENCES employees (employee_id),
+    employee_id int REFERENCES employees (employee_id)NOT NULL,
     order_date varchar(100) NOT NULL,
     ship_city varchar(100) NOT NULL
 )
