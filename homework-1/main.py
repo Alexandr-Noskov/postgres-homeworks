@@ -35,20 +35,20 @@ orders = csv_data_reciever.get_data_csv('north_data/orders_data.csv')
 print(customers)
 
 
-conn = psycopg2.connect(host='localhost', database='north', user='postgres', password=postgres_key)
+conn = psycopg2.connect(host='localhost', database='north', user='postgres', password=1408)
 
 try:
     """Заполнение таблиц внутри БД north данными"""
     with conn:
         with conn.cursor() as cur:
             for customer in range(len(customers)):
-                cur.execute('INSERT INTO customers_data VALUES (%s, %s, %s)',
+                cur.execute('INSERT INTO customers VALUES (%s, %s, %s)',
                             (customers[customer]['customer_id'],
                              customers[customer]['company_name'],
                              customers[customer]['contact_name']))
 
             for employee in range(len(employees)):
-                cur.execute('INSERT INTO employees_data VALUES (%s, %s, %s, %s, %s, %s)',
+                cur.execute('INSERT INTO employees VALUES (%s, %s, %s, %s, %s, %s)',
                             (employees[employee]['employee_id'],
                              employees[employee]['first_name'],
                              employees[employee]['last_name'],
@@ -57,7 +57,7 @@ try:
                              employees[employee]['notes']))
 
             for order in range(len(orders)):
-                cur.execute('INSERT INTO orders_data VALUES (%s, %s, %s, %s, %s)',
+                cur.execute('INSERT INTO orders VALUES (%s, %s, %s, %s, %s)',
                             (orders[order]['order_id'],
                              orders[order]['customer_id'],
                              orders[order]['employee_id'],
