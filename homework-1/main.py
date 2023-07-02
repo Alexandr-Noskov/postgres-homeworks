@@ -1,12 +1,6 @@
 """Скрипт для заполнения данными таблиц в БД Postgres."""
 import psycopg2
-import os
 import csv
-from dotenv import load_dotenv
-
-load_dotenv()
-postgres_key = os.getenv('POSTGRESSQL_KEY')
-
 
 class RecieveDataFromCSV:
     """Класс с методом для получения данных из .csv файлов"""
@@ -24,13 +18,13 @@ class RecieveDataFromCSV:
 csv_data_reciever = RecieveDataFromCSV()
 customers = csv_data_reciever.get_data_csv('north_data/customers_data.csv')
 employees = csv_data_reciever.get_data_csv('north_data/employees_data.csv')
+orders = csv_data_reciever.get_data_csv('north_data/orders_data.csv')
 
 # добавление значения id для работников
 employee_id = 1
 for employee_data in employees:
     employee_data['employee_id'] = employee_id
     employee_id += 1
-orders = csv_data_reciever.get_data_csv('north_data/orders_data.csv')
 
 print(customers)
 
